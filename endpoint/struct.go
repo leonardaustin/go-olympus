@@ -10,9 +10,14 @@ type Request struct {
 	Message nsq.Message
 }
 
-// All end points require a name, authlevel (set in config) and handler method
+/** All end points require a name,
+ * hostname and processId (of the machine it is running on),
+ * authlevel (set in config) and handler method
+ */
 type Endpoint struct {
 	Name      string
+	Hostname  string
+	ProcessId int
 	AuthLevel float64
 	Handler   Handler
 }

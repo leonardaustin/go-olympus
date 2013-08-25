@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/leonardaustin/go-olympus/endpoint"
 	"github.com/leonardaustin/go-olympus/server"
 )
@@ -9,15 +8,10 @@ import (
 func main() {
 
 	// Handle endpoint registration
-	testvar := endpoint.List()
-	fmt.Println(testvar)
+	endpoint.Listen()
 
 	// Handel all http requests
 	server.Http()
 
 	// Handle all internal proto requests
-}
-
-func test() {
-
 }

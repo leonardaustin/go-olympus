@@ -16,5 +16,5 @@ func Http() {
 func httpRequest(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
 
-	log.Println(r.URL)
+	log.Println("New Http Request: ", r.URL)
 }

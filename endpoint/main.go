@@ -4,6 +4,7 @@ import (
 	"code.google.com/p/goprotobuf/proto"
 	"errors"
 	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -14,7 +15,6 @@ var (
 func init() {
 	// Need to run make in method
 	endpoints = make(map[string]*Endpoint)
-
 }
 
 func List() map[string]*Endpoint {
@@ -24,6 +24,7 @@ func List() map[string]*Endpoint {
 
 func Register(ep *Endpoint) {
 	endpoints[ep.Name+ep.Hostname+strconv.Itoa(ep.ProcessId)] = ep
+	log.Println("New Endpoint Register : ", ep.Name+ep.Hostname+strconv.Itoa(ep.ProcessId))
 }
 
 func TestRegister() {
