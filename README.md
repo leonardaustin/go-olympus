@@ -12,3 +12,15 @@ Olympus manages all services and routes requests to the correct location (both i
 
 ### Internal
 * Allow services to register endpoints
+
+## Server Stack
+- Go
+- protobuf
+- Cassandra
+- NSQ
+
+## Client Stack
+- Backbone.js
+- Require.js
+- jQuery ()
+- Twitter Bootstrap (HTML/CSS/JS)
