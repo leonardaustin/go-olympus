@@ -1,8 +1,8 @@
-package handler
+package endpoint
 
 import ()
 
-func EndpointList() map[int]string {
+func List() map[int]string {
 
 	endpointtest := map[int]string{
 		123: "endpoint1",
@@ -12,4 +12,8 @@ func EndpointList() map[int]string {
 	}
 
 	return endpointtest
+}
+
+func Register(ep *Endpoint) {
+	// Add to the list of active endpoints
 }

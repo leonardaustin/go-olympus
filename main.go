@@ -2,19 +2,20 @@ package main
 
 import (
 	"fmt"
-	"github.com/leonardaustin/go-olympus/handler"
+	"github.com/leonardaustin/go-olympus/endpoint"
+	"github.com/leonardaustin/go-olympus/server"
 )
 
 func main() {
 
 	// Handle endpoint registration
-	testvar := handler.EndpointList()
+	testvar := endpoint.List()
 	fmt.Println(testvar)
 
 	// Handel all http requests
-	handler.Http()
+	server.Http()
 
-	// Handle all proto requests
+	// Handle all internal proto requests
 }
 
 func test() {
