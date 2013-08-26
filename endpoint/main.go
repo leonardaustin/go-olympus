@@ -9,21 +9,26 @@ import (
 )
 
 var (
-	endpoints map[string]*Endpoint
+	activeEndpoints map[string][]*Endpoint
 )
 
 func init() {
 	// Need to run make in method
-	endpoints = make(map[string]*Endpoint)
+	activeEndpoints = make(map[string][]*Endpoint)
 }
 
-func List() map[string]*Endpoint {
+func List() map[string][]*Endpoint {
 
-	return endpoints
+	return activeEndpoints
 }
 
 func Register(ep *Endpoint) {
-	endpoints[ep.Name+ep.Hostname+strconv.Itoa(ep.ProcessId)] = ep
+
+	currentEndpoints := activeEndpoints[ep.Name]
+	newEndpoint := []*Endpoint{ep}
+
+	// Need ... as newEndpoint is not a slice
+	activeEndpoints[ep.Name] = append(currentEndpoints, newEndpoint...)
 	log.Println("New Endpoint Register : ", ep.Name+ep.Hostname+strconv.Itoa(ep.ProcessId))
 }
 
@@ -37,8 +42,30 @@ func TestRegister() {
 		Handler:   Testfunc,
 	}
 
-	fmt.Println(testendpoint)
+	fmt.Println("Create New Endpoint", testendpoint)
 	Register(&testendpoint)
+
+	testendpoint2 := Endpoint{
+		Name:      "testName",
+		ProcessId: 9999,
+		Hostname:  "hostname2",
+		AuthLevel: 2.8,
+		Handler:   Testfunc,
+	}
+
+	fmt.Println("Create New Endpoint", testendpoint2)
+	Register(&testendpoint2)
+
+	testendpoint3 := Endpoint{
+		Name:      "testName2",
+		ProcessId: 9999,
+		Hostname:  "hostname",
+		AuthLevel: 0.8,
+		Handler:   Testfunc,
+	}
+
+	fmt.Println("Create New Endpoint", testendpoint3)
+	Register(&testendpoint3)
 }
 
 func Testfunc(req *Request) (proto.Message, error) {
